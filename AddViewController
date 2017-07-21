@@ -1,0 +1,26 @@
+import Foundation
+import UIKit
+
+extension UIViewController {
+    
+    func addViewControllerWithIdentifier(identifier:String, inView containerView:UIView ) {
+        let controller = storyboard!.instantiateViewController(withIdentifier: identifier)
+        
+        addChildViewController(controller)
+        
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.addSubview(controller.view)
+        
+        
+        NSLayoutConstraint.activate([
+            controller.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            controller.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            controller.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+            controller.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+        
+        controller.didMove(toParentViewController: self)
+
+    }
+}
